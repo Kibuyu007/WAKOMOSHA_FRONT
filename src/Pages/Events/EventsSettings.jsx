@@ -1,47 +1,43 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import SettingsList from "./SettingsList";
-import Users from "./Users/Users";
+import Contributions from "./Operations/Contributions";
+import EventsSettingList from "./EventsSettingList";
 
-const Settings = () => {
-  const [selectedSetting, setSelectedSetting] = useState(null);
-  const users = useSelector((state) => state.user.user);
+const EventsSettings = () => {
+  const [selectedOperation, setSelectedOperation] = useState(null);
 
   return (
-     <section className="h-[90vh] flex flex-col md:flex-row gap-3 pt-24 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 overflow-hidden mt-2">
+    <section className="h-[90vh] flex flex-col md:flex-row gap-3 pt-24 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 overflow-hidden mt-2">
       {/* Left Section - User Setup */}
-      <div className="flex-1 md:flex-[2] bg-white rounded-xl p-4 sm:p-6 shadow-md text-black overflow-y-auto max-h-[80vh] scrollbar-hide">       
+      <div className="flex-1 md:flex-[2] bg-white rounded-xl p-4 sm:p-6 shadow-md text-black overflow-y-auto max-h-[80vh] scrollbar-hide">
         <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-          Settings
+          Events
         </h2>
 
         <div className="relative space-y-4">
           {/* Event Management Card */}
           <div className="bg-[#dee1fc] rounded-2xl p-4 shadow-xl border border-blue-300/30">
-            <SettingsList
+            <EventsSettingList
               title="Event Management"
-              settings={[
+              operations={[
                 {
-                  group: "Event Configurations",
-                  items: ["All Events", "Integrations", "Notifications"],
+                  group: "Contributions",
+                  items: ["Contribution Records", "Events Summary"],
                 },
               ]}
-              selectedSetting={selectedSetting}
-              handleSelect={setSelectedSetting}
+              selectedOperation={selectedOperation}
+              handleSelect={setSelectedOperation}
             />
           </div>
 
-          {/* User Administration Card */}
-          {users?.roles?.canAddUsers && (
+          {/* Administration Card */}
           <div className="bg-[#dee1fc] rounded-2xl p-4 shadow-xl border border-blue-300/30">
-              <SettingsList
-                title="User Administration"
-                settings={["All Users", "Roles & Permissions", "Activity Logs"]}
-                selectedSetting={selectedSetting}
-                handleSelect={setSelectedSetting}
-              />
-            </div>
-          )}
+            <EventsSettingList
+              title="Reports& Statistics"
+              operations={["All Contributers", "Events", "Analytics"]}
+              selectedOperation={selectedOperation}
+              handleSelect={setSelectedOperation}
+            />
+          </div>
         </div>
       </div>
 
@@ -50,11 +46,11 @@ const Settings = () => {
         <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
           Selected Report
         </h2>
-        
+
         <div className="relative h-full">
-          {selectedSetting === "All Users" ? (
+          {selectedOperation === "Contribution Records" ? (
             <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
-              <Users />
+              <Contributions />
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-96">
@@ -77,4 +73,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default EventsSettings;

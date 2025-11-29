@@ -53,7 +53,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="fixed left-0 right-0 top-0 flex justify-center z-50 backdrop-blur-sm bg-white/90 dark:bg-neutral-900/90 border-b border-gray-200/50 dark:border-neutral-700/50 supports-backdrop-blur:bg-white/80">
+    <div className="fixed left-0 right-0 top-0 flex justify-center z-50  dark:bg-neutral-900/90 border-b border-gray-200/50 dark:border-neutral-700/50 supports-backdrop-blur:bg-white/80">
       <header className="w-full max-w-[1800px] mx-auto px-6 py-4 flex justify-between items-center">
         {/* Enhanced Logo Section */}
         <div className="flex items-center gap-4 group cursor-pointer min-w-0 flex-1">

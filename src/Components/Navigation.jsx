@@ -1,6 +1,6 @@
 import { FaHome } from "react-icons/fa";
-import { TiShoppingCart } from "react-icons/ti";
-import { IoSettings } from "react-icons/io5";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { FcSettings } from "react-icons/fc";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
@@ -9,8 +9,8 @@ const Navigation = () => {
 
   const navItems = [
     { path: "/home", label: "Home", icon: <FaHome size={20} /> },
-    { path: "/events", label: "events", icon: <TiShoppingCart size={20} /> },
-    { path: "/settings", label: "Settings", icon: <IoSettings size={20} /> },
+    { path: "/eventsSettings", label: "Events", icon: <FcMoneyTransfer size={20} /> },
+    { path: "/settings", label: "Settings", icon: <FcSettings size={20} /> },
   ];
 
   return (

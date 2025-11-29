@@ -10,9 +10,7 @@ import Navigation from "./Components/Navigation";
 import Auth from "./Pages/Auth/Auth";
 import Header from './Components/Header';
 import ProtectedRoute from './Components/ProtectedRoute';
-import Home from './Pages/Home/Home';
-import Settings from './Pages/Settings/Settings';
-import Events from './Pages/Events/Events';
+import { Home, Events, Settings, EventsSettings } from "./Pages/pageIndex";
 
 function Layout() {
   const location = useLocation(); // Get current route
@@ -34,6 +32,7 @@ function Layout() {
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/eventsSettings" element={<EventsSettings/>} />
         </Route>
 
         {/* 404 Page */}
