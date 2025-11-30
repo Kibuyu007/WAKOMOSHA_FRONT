@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Contributions from "./Operations/Contributions";
+import AllEvents from "./Operations/Events/AllEvents"
 import EventsSettingList from "./EventsSettingList";
 
 const EventsSettings = () => {
@@ -50,7 +50,7 @@ const EventsSettings = () => {
         <div className="relative h-full">
           {selectedOperation === "Contribution Records" ? (
             <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
-              <Contributions />
+              <AllEvents />
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-96">
