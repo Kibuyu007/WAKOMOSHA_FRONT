@@ -58,7 +58,7 @@ const AllEvents = () => {
     try {
       if (currentStatus === "closed") return; // Closed events cannot be reopened
 
-      const response = await axios.put(`${BASE_URL}/api/events/${eventId}/close`);
+      const response = await axios.put(`${BASE_URL}/api/events/closeEvent/${eventId}`);
 
       if (response.status === 200) {
         setEvents((prevEvents) =>

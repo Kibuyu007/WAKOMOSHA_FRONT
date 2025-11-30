@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AllEvents from "./Operations/Events/AllEvents"
 import EventsSettingList from "./EventsSettingList";
+import Contributions from './Operations/Contribution/Contributions';
 
 const EventsSettings = () => {
   const [selectedOperation, setSelectedOperation] = useState(null);
@@ -50,7 +51,7 @@ const EventsSettings = () => {
         <div className="relative h-full">
           {selectedOperation === "Contribution Records" ? (
             <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
-              <AllEvents />
+              <Contributions />
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-96">
