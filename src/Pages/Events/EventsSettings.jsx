@@ -1,7 +1,9 @@
 import { useState } from "react";
-import AllEvents from "./Operations/Events/AllEvents"
+import AllEvents from "./Operations/Events/AllEvents";
 import EventsSettingList from "./EventsSettingList";
-import Contributions from './Operations/Contribution/Contributions';
+import Contributions from "./Operations/Contribution/Contributions";
+import Users from "../Settings/Users/Users";
+import Summary from "./Operations/Contribution/Summary";
 
 const EventsSettings = () => {
   const [selectedOperation, setSelectedOperation] = useState(null);
@@ -15,6 +17,16 @@ const EventsSettings = () => {
         </h2>
 
         <div className="relative space-y-4">
+          {/* Administration Card */}
+          <div className="bg-[#dee1fc] rounded-2xl p-4 shadow-xl border border-blue-300/30">
+            <EventsSettingList
+              title="Reports& Statistics"
+              operations={["All Contributers", "Events", "Analytics"]}
+              selectedOperation={selectedOperation}
+              handleSelect={setSelectedOperation}
+            />
+          </div>
+
           {/* Event Management Card */}
           <div className="bg-[#dee1fc] rounded-2xl p-4 shadow-xl border border-blue-300/30">
             <EventsSettingList
@@ -25,16 +37,6 @@ const EventsSettings = () => {
                   items: ["Contribution Records", "Events Summary"],
                 },
               ]}
-              selectedOperation={selectedOperation}
-              handleSelect={setSelectedOperation}
-            />
-          </div>
-
-          {/* Administration Card */}
-          <div className="bg-[#dee1fc] rounded-2xl p-4 shadow-xl border border-blue-300/30">
-            <EventsSettingList
-              title="Reports& Statistics"
-              operations={["All Contributers", "Events", "Analytics"]}
               selectedOperation={selectedOperation}
               handleSelect={setSelectedOperation}
             />
@@ -53,7 +55,13 @@ const EventsSettings = () => {
             <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
               <Contributions />
             </div>
-          ) : (
+          ) : selectedOperation === "All Contributers" ? (
+            <Users />
+          ) : selectedOperation === "Events" ? (
+            <AllEvents />
+          ) :  selectedOperation === "Events Summary" ? (
+            <Summary />
+          ) :(
             <div className="flex flex-col items-center justify-center h-96">
               <div className="relative mb-6">
                 <img

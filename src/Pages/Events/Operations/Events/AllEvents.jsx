@@ -58,7 +58,9 @@ const AllEvents = () => {
     try {
       if (currentStatus === "closed") return; // Closed events cannot be reopened
 
-      const response = await axios.put(`${BASE_URL}/api/events/closeEvent/${eventId}`);
+      const response = await axios.put(
+        `${BASE_URL}/api/events/closeEvent/${eventId}`
+      );
 
       if (response.status === 200) {
         setEvents((prevEvents) =>
@@ -88,7 +90,10 @@ const AllEvents = () => {
   const totalPages = Math.ceil(filteredEvents.length / eventsPerPage);
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-  const currentEvents = filteredEvents.slice(indexOfFirstEvent, indexOfLastEvent);
+  const currentEvents = filteredEvents.slice(
+    indexOfFirstEvent,
+    indexOfLastEvent
+  );
 
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -170,70 +175,87 @@ const AllEvents = () => {
           <thead className="bg-gray-200 text-black">
             <tr>
               <th className="border border-gray-300 px-4 py-2 text-left">SN</th>
-              <th className="border border-gray-300 px-4 py-2 text-left">Event Name</th>
-              <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
-              <th className="border border-gray-300 px-4 py-2 text-center">Status</th>
-              <th className="border border-gray-300 px-4 py-2 text-left">Change Status</th>
-              <th className="border border-gray-300 px-4 py-2 text-left">Action</th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Event Name
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Description
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-center">
+                Status
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Change Status
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Action
+              </th>
             </tr>
           </thead>
- <tr className="h-3" />
+          <tr className="h-3" />
           <tbody>
             {currentEvents.map((event, index) => (
-
               <>
-              <tr
-                key={event._id}
-                className="focus:outline-none h-16 border-gray-500 shadow-md bg-gray-100"
-              >
-                <td className="pl-5 font-bold">
-                  <p className="text-sm text-gray-600">{indexOfFirstEvent + index + 1}</p>
-                </td>
+                <tr
+                  key={event._id}
+                  className="focus:outline-none h-16 border-gray-500 shadow-md bg-gray-100"
+                >
+                  <td className="pl-5 font-bold">
+                    <p className="text-sm text-gray-600">
+                      {indexOfFirstEvent + index + 1}
+                    </p>
+                  </td>
 
-                <td className="pl-4 font-bold">
-                  <p className="text-sm text-gray-600">{event.name}</p>
-                </td>
+                  <td className="pl-4 font-bold">
+                    <p className="text-sm text-gray-600">{event.name}</p>
+                  </td>
 
-                <td className="pl-5 font-bold">
-                  <p className="text-sm text-gray-600 truncate max-w-xs">{event.description}</p>
-                </td>
+                  <td className="pl-5 font-bold">
+                    <p className="text-sm text-gray-600 truncate max-w-xs">
+                      {event.description}
+                    </p>
+                  </td>
 
-                <td className="pl-5 font-bold text-center">
-                  <span
-                    className={`py-2 px-3 text-sm rounded-full ${
-                      event.status === "open"
-                        ? "text-green-800 bg-green-100"
-                        : "text-red-800 bg-red-100"
-                    }`}
-                  >
-                    {event.status}
-                  </span>
-                </td>
+                  <td className="pl-5 font-bold text-center">
+                    <span
+                      className={`py-2 px-3 text-sm rounded-full ${
+                        event.status === "open"
+                          ? "text-green-800 bg-green-100"
+                          : "text-red-800 bg-red-100"
+                      }`}
+                    >
+                      {event.status}
+                    </span>
+                  </td>
 
-                <td className="pl-5">
-                  <button
-                    className="focus:ring-1 focus:ring-offset-2 focus:ring-red-300 text-sm text-gray-600 py-2 px-4 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
-                    onClick={() => toggleEventStatus(event._id, event.status)}
-                    disabled={event.status === "closed"}
-                  >
-                    {event.status === "open" ? <BsToggleOn size={20} /> : <BsToggleOff size={20} />}
-                  </button>
-                </td>
+                  <td className="pl-5">
+                    <button
+                      className="focus:ring-1 focus:ring-offset-2 focus:ring-red-300 text-sm text-gray-600 py-2 px-4 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
+                      onClick={() => toggleEventStatus(event._id, event.status)}
+                      disabled={event.status === "closed"}
+                    >
+                      {event.status === "open" ? (
+                        <BsToggleOn size={20} />
+                      ) : (
+                        <BsToggleOff size={20} />
+                      )}
+                    </button>
+                  </td>
 
-                <td className="pl-4 gap-2 font-bold">
-                  <button
-                    onClick={() => {
-                      setShowModalEdit(true);
-                      setModifiedEvent(event);
-                    }}
-                    className="focus:ring-1 focus:ring-offset-2 focus:ring-blue-300 text-sm text-gray-600 py-2 px-4 bg-gray-200 rounded hover:bg-gray-100 focus:outline-none"
-                  >
-                    <FaEdit size={20} />
-                  </button>
-                </td>
-              </tr>
+                  <td className="pl-4 gap-2 font-bold">
+                    <button
+                      onClick={() => {
+                        setShowModalEdit(true);
+                        setModifiedEvent(event);
+                      }}
+                      className="focus:ring-1 focus:ring-offset-2 focus:ring-blue-300 text-sm text-gray-600 py-2 px-4 bg-gray-200 rounded hover:bg-gray-100 focus:outline-none"
+                    >
+                      <FaEdit size={20} />
+                    </button>
+                  </td>
+                </tr>
 
-               <tr className="h-4" />
+                <tr className="h-4" />
               </>
             ))}
           </tbody>
@@ -242,13 +264,19 @@ const AllEvents = () => {
         {/* Pagination */}
         <div className="flex items-center justify-between border-t border-gray-200 bg-white py-3 sm:px-6">
           <p className="text-sm text-gray-700">
-            Showing{" "}
-            <span className="font-medium">{indexOfFirstEvent + 1}</span> to{" "}
-            <span className="font-medium">{Math.min(indexOfLastEvent, filteredEvents.length)}</span> of{" "}
-            <span className="font-medium">{filteredEvents.length}</span> Events
+            Showing <span className="font-medium">{indexOfFirstEvent + 1}</span>{" "}
+            to{" "}
+            <span className="font-medium">
+              {Math.min(indexOfLastEvent, filteredEvents.length)}
+            </span>{" "}
+            of <span className="font-medium">{filteredEvents.length}</span>{" "}
+            Events
           </p>
 
-          <nav aria-label="Pagination" className="inline-flex -space-x-px rounded-md shadow-xs">
+          <nav
+            aria-label="Pagination"
+            className="inline-flex -space-x-px rounded-md shadow-xs"
+          >
             <button
               onClick={prevPage}
               disabled={currentPage === 1}
@@ -275,7 +303,9 @@ const AllEvents = () => {
               onClick={nextPage}
               disabled={currentPage === totalPages}
               className={`px-2 py-2 text-gray-400 border ring-1 ring-gray-300 rounded-r-md hover:bg-gray-50 ${
-                currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+                currentPage === totalPages
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
               }`}
             >
               <IoIosArrowForward size={20} />
