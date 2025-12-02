@@ -34,7 +34,7 @@ const EventsSettings = () => {
               operations={[
                 {
                   group: "Contributions",
-                  items: ["Contribution Records", "Events Summary"],
+                  items: ["Contribution Records", "Events Summary", "General Report"],
                 },
               ]}
               selectedOperation={selectedOperation}
@@ -45,7 +45,7 @@ const EventsSettings = () => {
       </div>
 
       {/* Right Section - Display Content */}
-      <div className="w-full md:w-4/5 bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-200/80 hover:border-gray-300/90 transition-all duration-500 overflow-hidden relative sm:p-6 shadow-md text-black overflow-y-auto max-h-[80vh] scrollbar-hide">
+      <div className="w-full md:w-4/5 bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-200/80 hover:border-gray-300/90 transition-all duration-500 overflow-hidden relative sm:p-6 text-black overflow-y-auto max-h-[80vh] scrollbar-hide">
         <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
           Selected Report
         </h2>

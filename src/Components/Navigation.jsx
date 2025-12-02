@@ -10,7 +10,7 @@ const Navigation = () => {
   const navItems = [
     { path: "/home", label: "Home", icon: <FaHome size={20} /> },
     { path: "/eventsSettings", label: "Events", icon: <FcMoneyTransfer size={20} /> },
-    { path: "/settings", label: "Settings", icon: <FcSettings size={20} /> },
+    // { path: "/settings", label: "Settings", icon: <FcSettings size={20} /> },
   ];
 
   return (
